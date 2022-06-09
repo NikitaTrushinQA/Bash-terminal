@@ -1,0 +1,98 @@
+                                                                               Дз 1   линекс   терминал.
+1) Посмотреть где я
+pwd
+
+2) Создать папку
+mkdir testbash1
+
+3) Зайти в папку
+cd testbash1
+
+4) Создать 3 папки
+mkdir testbash2 testbash3 testbash4
+
+5) Зайти в любоую папку
+cd testbash2
+
+6) Создать 5 файлов (3 txt, 2 json)
+touch file1.txt file2.txt file3.txt js1.json js2.json
+
+7) Создать 3 папки
+mkdir papka1 papka2 papka3
+
+8)Вывести список содержимого папки
+ls -la
+
+9) + Открыть любой txt файл
+Cat >> file1.txt
+
+10) + написать туда что-нибудь, любой текст.
+Power
+111
+opaopa
+#не забываем про enter после последнего ввода
+11) + сохранить и выйти.
+ctrl+c
+
+12) Выйти из папки на уровень выше
+cd ..                                                     #теперь нахожусь в testbash1
+
+13) переместить любые 2 файла, которые вы создали, в любую другую папку.
+mv testbash2/file1.txt testbash2/file2.txt testbash3       
+#переместит из папки testbash2 файл file1.txt и из папки testbash2 файл file2.txt  в папку testbash3
+14) скопировать любые 2 файла, которые вы создали, в любую другую папку.
+cp testbash3/file1.txt testbash3/file2.txt testbash4 
+#скопирует из папки testbash3 файл file1.txt и из папки testbash3 файл file2.txt  в папку testbash4
+15) Найти файл по имени
+find –name file1.txt
+
+16) просмотреть содержимое файла в реальном времени.
+cd testbash3     #заходим в папку где этот файл
+tail -F file1.txt
+
+17) вывести несколько первых строк из текстового файла
+head -n2 file1.txt                                                             #     n2  -кол-во строк (2)
+18) вывести несколько последних строк из текстового файла
+tail -n2 file1.txt
+19) просмотреть содержимое длинного файла (команда less) изучите как она работает.
+less file2.txt                   # q-закрыть
+
+20) вывести дату и время
+date
+===========================================================================
+
+Задание *1
+Отправить http запрос на сервер. http://162.55.220.72:5005/terminal-hw-request
+
+curl "http://162.55.220.72:5005/terminal-hw-request"
+
+Ответ {"Intro":"Hello!! This is your the first response from server","Tasks":{"Task_1":"Send the next URL in terminal: http://162.55.220.72:5005/get_method?name=(set_your_String)&age=(set_your_number)","result":["Your_String","Your_number"]}}
+
+Выполняем Task1:
+curl "http://162.55.220.72:5005/get_method?name=(set_your_String)&age=(set_your_number)"
+вместо (set_your_String) пишем имя вместо (set_your_number) пишем возраст
+Ответ ["имя","возраст"]
+
+Задание *2 Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13
+
+cat > script.sh << EOF
+#!/bin/bash
+pwd 
+mkdir folder_script
+cd folder_script
+mkdir folder1 folder2 folder3
+cd folder3
+touch {text4.txt,text5.txt,text6.txt,json3.json,json4.json}
+mkdir script_folder1 script_folder2 script_folder3
+ls -la
+mv text4.txt json3.json script_folder2
+mv folder3/{text4.txt,json3.json} folder3/script_folder2
+curl "http://162.55.220.72:5005/terminal-hw-request"
+curl "http://162.55.220.72:5005/get_method?name=(Trushin)&age=(29)"
+date 
+EOF
+Enter
+chmod +x script.sh
+./script.sh
+
+
